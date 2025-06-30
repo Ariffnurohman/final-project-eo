@@ -26,6 +26,19 @@ class AdController extends Controller
 
     public function store(Request $request)
     {
+        // Validasi input termasuk file image
+        $request->validate([
+            'title' => 'required',
+            'message' => 'required',
+            'image' => 'required|image|mimes:jpg,jpeg,png|max:2048',
+        ]);
+
+        // Debug log untuk memastikan file terkirim
+        if (!$request->hasFile('image')) {
+            dd('File tidak dikirim');
+        }
+    
+    {
         $request->validate([
             'title' => 'required|string',
             'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
@@ -39,6 +52,7 @@ class AdController extends Controller
             'image_path' => $imagePath, // jika ada upload file
         ]);
 
-        return redirect()->route('admin.ads.index')->with('success', 'Iklan berhasil ditambahkan.');
+        return redirect()->route('admin.dashboard')->with('success', 'Iklan berhasil ditambahkan.');
     }
+}
 }

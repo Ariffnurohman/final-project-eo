@@ -11,9 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('ads', function (Blueprint $table) {
-            $table->text('message')->nullable()->change();
+        Schema::create('ads', function (Blueprint $table) {
+            $table->id();
+            $table->string('title')->nullable();
+            $table->text('message')->nullable();
+            $table->string('image_path')->nullable(); // ✅ tambahkan ini
+            $table->timestamps();
         });
+        
     }
 
     /**
@@ -21,8 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('ads', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('ads');
     }
 };

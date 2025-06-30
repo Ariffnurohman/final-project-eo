@@ -21,13 +21,6 @@
                     <input type="email" name="email" class="form-control" value="{{ old('email', $user->email) }}" required>
                 </div>
 
-                <div class="mb-3">
-                    <label class="form-label">Foto Profil</label><br>
-                    @if ($user->profile_photo)
-                    <img src="{{ Storage::url($user->profile_photo) }}" width="80" class="rounded-circle mb-2">
-                    @endif
-                    <input type="file" name="profile_photo" class="form-control">
-                </div>
 
                 <button type="submit" class="btn btn-success">💾 Simpan</button>
                 <a href="{{ route('profile') }}" class="btn btn-secondary">⬅ Batal</a>

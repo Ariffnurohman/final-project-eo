@@ -19,7 +19,9 @@ use App\Http\Controllers\Web\AdminController;
 use App\Http\Controllers\Web\ExploreController;
 
 
-
+Route::get('/', function () {
+    return view('welcome');
+})->name('welcome');
 
 Route::get('/profile', [ProfileController::class, 'index']);
 

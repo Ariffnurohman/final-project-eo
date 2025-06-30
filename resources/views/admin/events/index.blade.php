@@ -32,7 +32,6 @@
                     <div class="d-flex flex-wrap gap-2">
                         <a href="{{ route('admin.events.stats', $event->id) }}" class="btn btn-sm btn-outline-primary">📊 Statistik</a>
                         <a href="{{ route('admin.participants.index', ['event' => $event->id]) }}" class="btn btn-sm btn-outline-success">👥 Peserta</a>
-                        <a href="{{ route('admin.events.create') }}" class="btn btn-sm btn-outline-warning">✏ Edit</a>
                     </div>
                 </div>
             </div>

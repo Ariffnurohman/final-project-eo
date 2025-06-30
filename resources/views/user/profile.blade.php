@@ -11,15 +11,6 @@ use Illuminate\Support\Str;
     <div class="card shadow-sm border rounded-4 p-4" style="max-width: 400px; width: 100%; background: #ffffff;">
         <div class="card-body text-center">
 
-            {{-- Foto Profil --}}
-            @if ($user->foto)
-            <img src="{{ asset($user->foto) }}" class="rounded-circle shadow mb-3" alt="Foto Profil""
-                style="width: 120px; height: 120px; object-fit: cover; border: 4px solid #dee2e6;">
-            @else
-            <img src="{{ asset('images/default.jpg') }}" class="rounded-circle shadow mb-3"
-                style="width: 120px; height: 120px; object-fit: cover; border: 4px solid #dee2e6;">
-            @endif
-
             {{-- Nama dan Email --}}
             <h5 class="fw-bold mb-0">{{ $user->name }}</h5>
             <small class="text-muted d-block mb-2">
