@@ -61,14 +61,16 @@ Route::get('/scan/verify', function (Request $request) {
     return 'Verifikasi QR: User ' . $request->user_id . ' Event ' . $request->event_id;
 })->name('scan.verify');
 
-Route::get('/', [AuthController::class, 'showLoginForm'])->name('login');
-
+// Form login (GET)
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [AuthController::class, 'login']);
+// Proses login (POST)
+Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
+// Logout
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+// Form register
 Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
+// Proses register
 Route::post('/register', [AuthController::class, 'register']);
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
 Route::middleware(['auth'])->group(function () {
@@ -78,7 +80,7 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware(['auth'])->prefix('admin')->group(function () {
         Route::get('/events', [EventAdminController::class, 'index'])->name('admin.events.index');
         Route::get('/events/create', [EventAdminController::class, 'create'])->name('admin.events.create');
-        Route::get('/events/{event}/stats', [EventAdminController::class, 'stats'])->name('admin.events.stats');
+        Route::get('/events/{event}/stats', [EventAdminController::class, 'stats'])->name('admin.events.stats.detail');
         Route::post('/events', [EventAdminController::class, 'store'])->name('admin.events.store');
         Route::get('/dashboard', [EventAdminController::class, 'index']);
         Route::get('/admin/stats', [EventAdminController::class, 'stats'])->name('admin.events.stats');
@@ -90,9 +92,8 @@ Route::middleware(['auth'])->group(function () {
 
 
 
-
     Route::middleware(['auth'])->prefix('admin')->group(function () {
-        Route::get('/events/{event}/participants', [ParticipantAdminController::class, 'index'])->name('admin.participants.index');
+        Route::get('/events/{event}/participants', [ParticipantAdminController::class, 'index'])->name('admin.participants.by_event');
         Route::get('/generate-sertifikat/{participantId}', [CertificateController::class, 'generate'])->name('admin.certificate.generate');
     });
 
